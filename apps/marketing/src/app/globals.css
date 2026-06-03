@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+html, body { margin: 0; padding: 0; font-family: 'DM Sans', sans-serif; color: #3D2B35; background: #FFF6F6; }
+.font-display { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em; }
