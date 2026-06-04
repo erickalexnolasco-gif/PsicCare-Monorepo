@@ -1,0 +1,38 @@
+{
+  "node": {
+    "33c8c6f15938614d59bacafc8c2648186cbdf728": {
+      "workers": {
+        "app/(auth)/login/page": "(action-browser)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FPsicCare-Monorepo%2Fapps%2Fapp%2Fsrc%2Fapp%2F(auth)%2Factions.ts%22%2C%5B%22signInWithGoogle%22%2C%22signIn%22%2C%22signUp%22%2C%22signOut%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/(auth)/login/page": "action-browser"
+      }
+    },
+    "344d299fc825d37d159d4dbbefecf3f44cc66060": {
+      "workers": {
+        "app/(auth)/login/page": "(action-browser)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FPsicCare-Monorepo%2Fapps%2Fapp%2Fsrc%2Fapp%2F(auth)%2Factions.ts%22%2C%5B%22signInWithGoogle%22%2C%22signIn%22%2C%22signUp%22%2C%22signOut%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/(auth)/login/page": "action-browser"
+      }
+    },
+    "6772f295029058e34e26397b6a34766f1e8fd839": {
+      "workers": {
+        "app/(auth)/login/page": "(action-browser)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FPsicCare-Monorepo%2Fapps%2Fapp%2Fsrc%2Fapp%2F(auth)%2Factions.ts%22%2C%5B%22signInWithGoogle%22%2C%22signIn%22%2C%22signUp%22%2C%22signOut%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/(auth)/login/page": "action-browser"
+      }
+    },
+    "c62651e3196c63348c01f4d632f5f56a232fce9c": {
+      "workers": {
+        "app/(auth)/login/page": "(action-browser)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FPsicCare-Monorepo%2Fapps%2Fapp%2Fsrc%2Fapp%2F(auth)%2Factions.ts%22%2C%5B%22signInWithGoogle%22%2C%22signIn%22%2C%22signUp%22%2C%22signOut%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/(auth)/login/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "nnVKnXPCQgXqU5F+Y5oCbz7o+0xcPw4PQgwd0HtNZyE="
+}
