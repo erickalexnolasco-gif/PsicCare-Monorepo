@@ -109,7 +109,10 @@ body {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(232, 160, 191, 0.25);
   border-radius: 12px;
-  padding: 10px 14px;
+   padding-top: 10px;
+  padding-right: 14px;
+  padding-bottom: 10px;
+  padding-left: 14px;
   font-size: 14px;
   color: var(--psi-text);
   transition: all 200ms ease;
