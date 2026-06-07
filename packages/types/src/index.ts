@@ -1,3 +1,4 @@
+//packages/types/src/index.ts
 import { z } from "zod";
 
 /* ===== Auth & Organization ===== */
@@ -38,7 +39,8 @@ export const PacienteSchema = z.object({
   color: z.string().default("#E8A0BF"),
   motivo_consulta: z.string().default(""),
   notas_generales: z.string().default(""),
-  fecha_nacimiento: z.string().optional().nullable(),
+  // 👇 CAMBIO APLICADO: Forzamos formato YYYY-MM-DD para la base de datos
+  fecha_nacimiento: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato debe ser YYYY-MM-DD").optional().nullable(),
   direccion: z.string().optional().nullable(),
   contacto_emergencia: z.string().optional().nullable(),
   fecha_inicio: z.string(),
@@ -61,7 +63,8 @@ export const SesionSchema = z.object({
   organization_id: z.string().uuid(),
   owner_id: z.string().uuid(),
   paciente_id: z.string().uuid(),
-  fecha: z.string(),
+  // 👇 CAMBIO APLICADO: Obligamos a que la fecha incluya Timezone (ISO)
+  fecha: z.string().datetime(), 
   duracion: z.number().int().min(15).max(180).default(50),
   tipo: z.enum(["presencial", "online"]).default("presencial"),
   estado: z.enum(["programada", "completada", "cancelada", "no_asistio"]).default("programada"),
@@ -78,14 +81,22 @@ export type Sesion = z.infer<typeof SesionSchema>;
 
 export const SesionCreateSchema = z.object({
   paciente_id: z.string().uuid("Selecciona un paciente"),
-  fecha: z.string().min(1, "Fecha requerida"),
+  fecha: z.string().datetime({ message: "Debe ser una fecha válida con hora" }),
   duracion: z.number().int().min(15).max(180).default(50),
   tipo: z.enum(["presencial", "online"]).default("presencial"),
   notas_previas: z.string().optional().default(""),
 });
 export type SesionCreate = z.infer<typeof SesionCreateSchema>;
 
-/* ===== Plan de Intervención (Tasks) ===== */
+/* ===== Plan de Intervención (Tasks + Subtareas JSONB) ===== */
+export const SubtareaSchema = z.object({
+  id: z.string(), // ID autogenerado en frontend (ej. crypto.randomUUID)
+  titulo: z.string().min(1, "La tarea no puede estar vacía"),
+  completado: z.boolean().default(false),
+  vista_en_sesion_id: z.string().uuid().nullable().optional(),
+});
+export type Subtarea = z.infer<typeof SubtareaSchema>;
+
 export const TaskSchema = z.object({
   id: z.string().uuid(),
   organization_id: z.string().uuid(),
@@ -97,10 +108,27 @@ export const TaskSchema = z.object({
   estado: z.enum(["pendiente", "visto"]).default("pendiente"),
   orden: z.number().int().default(0),
   sesion_id: z.string().uuid().nullable(),
+  // 👇 CAMBIO APLICADO: Arreglo de subtareas listo para guardarse como JSONB
+  subtareas: z.array(SubtareaSchema).default([]), 
   created_at: z.string(),
   updated_at: z.string(),
 });
 export type Task = z.infer<typeof TaskSchema>;
+
+/* ===== Archivos (Nuevo Esquema Unificado) ===== */
+export const ArchivoSchema = z.object({
+  id: z.string().uuid(),
+  organization_id: z.string().uuid(),
+  owner_id: z.string().uuid(),
+  paciente_id: z.string().uuid(),
+  nombre: z.string().min(1),
+  tipo: z.enum(["consentimiento", "evaluacion", "reporte", "otro"]).default("otro"),
+  storage_path: z.string().min(1),
+  mime: z.string().optional().nullable(),
+  size_bytes: z.number().optional().nullable(),
+  created_at: z.string(),
+});
+export type Archivo = z.infer<typeof ArchivoSchema>;
 
 /* ===== Recordatorios ===== */
 export const RecordatorioSchema = z.object({
