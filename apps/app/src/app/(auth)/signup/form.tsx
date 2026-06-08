@@ -23,21 +23,21 @@ export function SignupForm() {
         <label className="text-sm font-medium block mb-2">Tu nombre</label>
         <div className="relative">
           <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-          <input name="nombre" type="text" required placeholder="Dra. Sofía García" className="input-field pl-11" data-testid="signup-nombre" />
+          <input name="nombre" type="text" required placeholder="Dra. Sofía García" className="input-field !pl-11" data-testid="signup-nombre" />
         </div>
       </div>
       <div>
         <label className="text-sm font-medium block mb-2">Correo profesional</label>
         <div className="relative">
           <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-          <input name="email" type="email" required placeholder="tu@correo.com" className="input-field pl-11" data-testid="signup-email" />
+          <input name="email" type="email" required placeholder="tu@correo.com" className="input-field !pl-11" data-testid="signup-email" />
         </div>
       </div>
       <div>
         <label className="text-sm font-medium block mb-2">Contraseña</label>
         <div className="relative">
           <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-          <input name="password" type="password" required minLength={6} placeholder="Mínimo 6 caracteres" className="input-field pl-11" data-testid="signup-password" />
+          <input name="password" type="password" required minLength={6} placeholder="Mínimo 6 caracteres" className="input-field !pl-11" data-testid="signup-password" />
         </div>
       </div>
       {error && <p className="text-sm" style={{ color: "#a85555" }} data-testid="signup-error">{error}</p>}

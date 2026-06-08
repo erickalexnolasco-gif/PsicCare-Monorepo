@@ -55,14 +55,14 @@ export function LoginForm() {
           <label className="text-sm font-medium block mb-2">Correo</label>
           <div className="relative">
             <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-            <input name="email" type="email" required defaultValue="" placeholder="tu@correo.com" className="input-field pl-11" data-testid="login-email" />
+            <input name="email" type="email" required defaultValue="" placeholder="tu@correo.com" className="input-field !pl-11" data-testid="login-email" />
           </div>
         </div>
         <div>
           <label className="text-sm font-medium block mb-2">Contraseña</label>
           <div className="relative">
             <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-            <input name="password" type="password" required placeholder="••••••••" className="input-field pl-11" data-testid="login-password" />
+            <input name="password" type="password" required placeholder="••••••••" className="input-field !pl-11" data-testid="login-password" />
           </div>
         </div>
         {error && <p className="text-sm" style={{ color: "#a85555" }} data-testid="login-error">{error}</p>}

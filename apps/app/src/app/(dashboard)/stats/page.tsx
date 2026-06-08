@@ -1,8 +1,31 @@
+//apps/app/src/app/(dashboard)/stats/page.tsx
+import { Suspense } from "react";
 import { createClient } from "@psicare/db/server";
 
 export const dynamic = "force-dynamic";
 
-export default async function StatsPage() {
+// ==========================================
+// 🚀 COMPONENTE PRINCIPAL (Carga Instantánea)
+// ==========================================
+export default function StatsPage() {
+  return (
+    <>
+      <div className="mb-8 fade-up">
+        <h1 className="font-display text-5xl" data-testid="stats-title">Estadísticas</h1>
+        <p className="mt-1" style={{ color: "var(--psi-soft)" }}>Tu consulta en números</p>
+      </div>
+
+      <Suspense fallback={<StatsSkeleton />}>
+        <StatsDataLoader />
+      </Suspense>
+    </>
+  );
+}
+
+// ==========================================
+// 🧩 CREADOR DE DATOS (Espera a Supabase)
+// ==========================================
+async function StatsDataLoader() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const psico = (await supabase.from("psicologas").select("organization_id").eq("id", user!.id).single()).data!;
@@ -16,6 +39,7 @@ export default async function StatsPage() {
   const totalCompletadas = sesiones?.filter((s: any) => s.estado === "completada").length ?? 0;
   const totalProgramadas = sesiones?.filter((s: any) => s.estado === "programada").length ?? 0;
   const totalCanceladas = sesiones?.filter((s: any) => s.estado === "cancelada").length ?? 0;
+  
   const modCount: Record<string, number> = { presencial: 0, online: 0, mixta: 0 };
   patients?.forEach((p: any) => { modCount[p.modalidad] = (modCount[p.modalidad] || 0) + 1; });
 
@@ -35,11 +59,6 @@ export default async function StatsPage() {
 
   return (
     <>
-      <div className="mb-8 fade-up">
-        <h1 className="font-display text-5xl" data-testid="stats-title">Estadísticas</h1>
-        <p className="mt-1" style={{ color: "var(--psi-soft)" }}>Tu consulta en números</p>
-      </div>
-
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <MetricCard label="Total pacientes" value={patients?.length ?? 0} color="#E8A0BF" />
         <MetricCard label="Completadas" value={totalCompletadas} color="#A8D5A2" />
@@ -89,6 +108,29 @@ function MetricCard({ label, value, color }: any) {
       <div className="w-11 h-11 rounded-2xl mb-3" style={{ background: `linear-gradient(135deg, ${color}, ${color}cc)`, boxShadow: `0 6px 14px ${color}40` }} />
       <p className="text-sm" style={{ color: "var(--psi-soft)" }}>{label}</p>
       <p className="font-display text-4xl mt-1">{value}</p>
+    </div>
+  );
+}
+
+// ==========================================
+// 🦴 SKELETON LOADER
+// ==========================================
+function StatsSkeleton() {
+  return (
+    <div className="animate-pulse fade-in">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        {[1, 2, 3, 4].map(i => (
+          <div key={i} className="card-soft p-6">
+            <div className="w-11 h-11 bg-gray-200 rounded-2xl mb-3"></div>
+            <div className="h-4 bg-gray-200 rounded w-20 mb-2"></div>
+            <div className="h-10 bg-gray-200 rounded w-12"></div>
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="card-soft p-7 h-80 bg-gray-100 border border-gray-200/50"></div>
+        <div className="card-soft p-7 h-80 bg-gray-100 border border-gray-200/50"></div>
+      </div>
     </div>
   );
 }

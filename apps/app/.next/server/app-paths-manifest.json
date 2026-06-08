@@ -1,15 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/billing/checkout/route": "app/api/billing/checkout/route.js",
-  "/auth/callback/route": "app/auth/callback/route.js",
-  "/page": "app/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/signup/page": "app/(auth)/signup/page.js",
-  "/(dashboard)/patients/[id]/page": "app/(dashboard)/patients/[id]/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/patients/page": "app/(dashboard)/patients/page.js",
-  "/(dashboard)/stats/page": "app/(dashboard)/stats/page.js",
+  "/(dashboard)/calendar/page": "app/(dashboard)/calendar/page.js",
   "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
+  "/(dashboard)/stats/page": "app/(dashboard)/stats/page.js",
   "/(dashboard)/billing/page": "app/(dashboard)/billing/page.js",
-  "/(dashboard)/calendar/page": "app/(dashboard)/calendar/page.js"
+  "/(dashboard)/patients/page": "app/(dashboard)/patients/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

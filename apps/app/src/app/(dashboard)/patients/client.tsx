@@ -1,3 +1,4 @@
+//apps/app/src/app/(dashboard)/patients/client.tsx
 "use client";
 
 import { useState, useTransition } from "react";
@@ -41,7 +42,7 @@ export function PatientsClient({ patients, plan }: { patients: any[]; plan: stri
       <div className="card-soft p-5 mb-6 flex items-center gap-4">
         <div className="relative flex-1">
           <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--psi-soft)" }} />
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar..." className="input-field pl-11" data-testid="patient-search" />
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar..." className="input-field !pl-11" data-testid="patient-search" />
         </div>
         <div className="tab-list">
           {["todos", "activo", "pausa", "alta"].map((f) => (
