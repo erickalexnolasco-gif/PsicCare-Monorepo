@@ -1,3 +1,4 @@
+//apps/app/src/app/(auth)/actions.ts
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -6,48 +7,48 @@ import { createClient } from "@psicare/db/server";
 
 export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "");
-  const password = String(formData.get("password") ?? "");
+    const password = String(formData.get("password") ?? "");
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const supabase = await createClient();
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) return { error: error.message };
-  revalidatePath("/", "layout");
-  redirect("/dashboard");
-}
+          if (error) return { error: error.message };
+            revalidatePath("/", "layout");
+              redirect("/dashboard");
+              }
 
-export async function signUp(formData: FormData) {
-  const email = String(formData.get("email") ?? "");
-  const password = String(formData.get("password") ?? "");
-  const nombre = String(formData.get("nombre") ?? "");
+              export async function signUp(formData: FormData) {
+                const email = String(formData.get("email") ?? "");
+                  const password = String(formData.get("password") ?? "");
+                    const nombre = String(formData.get("nombre") ?? "");
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: { data: { nombre } },
-  });
-  if (error) return { error: error.message };
-  // El trigger handle_new_user crea organization + psicologa + subscription gratis
-  revalidatePath("/", "layout");
-  redirect("/dashboard");
-}
+                      const supabase = await createClient();
+                        const { error } = await supabase.auth.signUp({
+                            email,
+                                password,
+                                    options: { data: { nombre } },
+                                      });
+                                        if (error) return { error: error.message };
+                                          // El trigger handle_new_user crea organization + psicologa + subscription gratis
+                                            revalidatePath("/", "layout");
+                                              redirect("/dashboard");
+                                              }
 
-export async function signOut() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
-  revalidatePath("/", "layout");
-  redirect("/login");
-}
+                                              export async function signOut() {
+                                                const supabase = await createClient();
+                                                  await supabase.auth.signOut();
+                                                    revalidatePath("/", "layout");
+                                                      redirect("/login");
+                                                      }
 
-export async function signInWithGoogle() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-    },
-  });
-  if (error) return { error: error.message };
-  if (data.url) redirect(data.url);
-}
+                                                      export async function signInWithGoogle() {
+                                                        const supabase = await createClient();
+                                                          const { data, error } = await supabase.auth.signInWithOAuth({
+                                                              provider: "google",
+                                                                  options: {
+                                                                        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+                                                                            },
+                                                                              });
+                                                                                if (error) return { error: error.message };
+                                                                                  if (data.url) redirect(data.url);
+                                                                                  }
