@@ -1,3 +1,4 @@
+//packages/billing/src/index.ts
 import { PLANS, type Plan } from "@psicare/types";
 
 export { PLANS };

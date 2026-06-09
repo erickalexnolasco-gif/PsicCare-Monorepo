@@ -31,7 +31,7 @@ export function PatientsClient({ patients, plan }: { patients: any[]; plan: stri
           <h1 className="font-display text-5xl" data-testid="patients-title">Pacientes</h1>
           <p className="mt-1" style={{ color: "var(--psi-soft)" }}>
             {patients.length} en total, {patients.filter(p => p.estado === "activo").length} activos
-            {plan === "free" && <span className="badge badge-info ml-3"><Crown size={12} /> Plan Gratis · máx 1</span>}
+            {plan === "free" && <span className="badge badge-info ml-3"><Crown size={12} /> Plan Gratis · máx 3</span>}
           </p>
         </div>
         <button onClick={() => setShowModal(true)} className="btn-primary" data-testid="add-patient-btn">

@@ -161,14 +161,14 @@ export const PLANS: Plan[] = [
     nombre: "Gratis",
     precio_mensual_mxn: 0,
     precio_anual_mxn: 0,
-    max_pacientes: 1,
+    max_pacientes: 3,
     features: ["1 paciente", "Calendario básico", "Plan de intervención"],
   },
   {
     id: "pro",
     nombre: "Pro",
-    precio_mensual_mxn: 99,
-    precio_anual_mxn: 999,
+    precio_mensual_mxn: 149,
+    precio_anual_mxn: 1499,
     max_pacientes: null,
     features: [
       "Pacientes ilimitados",
